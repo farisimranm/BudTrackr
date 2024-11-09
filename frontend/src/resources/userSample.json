@@ -1,0 +1,12 @@
+{
+    "_id": {
+        "$oid": "66e6904886c4a485165b4bb4"
+    },
+    "id": "usr-7",
+    "name": "Faris",
+    "budgets": [
+        {
+            "budgetId": "bud-1"
+        }
+    ]
+}

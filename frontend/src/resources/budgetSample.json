@@ -1,0 +1,63 @@
+{
+    "_id": {
+        "$oid": "66e6910b3598bbd43c883fae"
+    },
+    "id": "bud-1",
+    "month": {
+        "$numberInt": "9"
+    },
+    "year": {
+        "$numberInt": "2024"
+    },
+    "rule": {
+        "necessities": {
+            "$numberInt": "50"
+        },
+        "desires": {
+            "$numberInt": "30"
+        },
+        "savings": {
+            "$numberInt": "20"
+        }
+    },
+    "incomes": {
+        "items": [
+            {
+                "incomeId": "inc-1"
+            },
+            {
+                "incomeId": "inc-2"
+            }
+        ]
+    },
+    "necessities": {
+        "items": [
+            {
+                "necessityId": "nec-1"
+            },
+            {
+                "necessityId": "nec-2"
+            }
+        ]
+    },
+    "desires": {
+        "items": [
+            {
+                "desireId": "des-1"
+            },
+            {
+                "desireId": "des-2"
+            }
+        ]
+    },
+    "savings": {
+        "items": [
+            {
+                "savingId": "sav-1"
+            },
+            {
+                "savingId": "sav-2"
+            }
+        ]
+    }
+}
