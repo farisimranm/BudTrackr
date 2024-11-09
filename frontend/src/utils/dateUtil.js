@@ -53,3 +53,11 @@ export const months = [
 ];
 
 export const getMonthName = (monthNumber) => { return monthNumber ? months[monthNumber - 1].label : NA };
+
+export const getFormattedDate = () => {
+    const today = new Date();
+    const day = new Intl.DateTimeFormat('en-GB', { weekday: 'long' }).format(today);
+    const date = new Intl.DateTimeFormat('en-GB', { day: '2-digit' }).format(today);
+    const month = new Intl.DateTimeFormat('en-GB', { month: 'long' }).format(today);
+    return `${day}, ${date} ${month}`;
+};

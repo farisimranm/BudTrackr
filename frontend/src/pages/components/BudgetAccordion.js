@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
+import {
+    Accordion,
+    AccordionSummary,
+    AccordionDetails,
+    Typography,
+    Paper,
+    IconButton,
+    Box
+} from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Box from '@mui/material/Box';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import BudgetDataGrid from "./BudgetDataGrid";
+import { INCOMES, NECESSITIES, DESIRES, SAVINGS } from "../../utils/constants";
 
 const budgetElementsMap = {
     income: {
@@ -30,24 +36,27 @@ const budgetElementsMap = {
     }
 }
 
-function BudgetAccordion({ mode, allocation, budgetElement }) {
+function BudgetAccordion({ itemType, allocation, initialBudgetElement, setBudgetElement }) {
     const [bmItem, setBmItem] = useState(null);
+    const [budgetList, setBudgetList] = useState(initialBudgetElement);
+
+    const emptyItem = { name: '', amount: 0, remarks: null, isCompleted: false };
 
     useEffect(() => {
         const prepareMode = () => {
-            if (mode) {
-                if (typeof mode === "string") {
-                    switch (mode) {
-                        case "income":
+            if (itemType) {
+                if (typeof itemType === "string") {
+                    switch (itemType) {
+                        case INCOMES:
                             setBmItem(budgetElementsMap.income);
                             break;
-                        case "necessity":
+                        case NECESSITIES:
                             setBmItem(budgetElementsMap.necessity);
                             break;
-                        case "desire":
+                        case DESIRES:
                             setBmItem(budgetElementsMap.desire);
                             break;
-                        case "saving":
+                        case SAVINGS:
                             setBmItem(budgetElementsMap.saving);
                             break;
                         default:
@@ -58,51 +67,62 @@ function BudgetAccordion({ mode, allocation, budgetElement }) {
         };
 
         prepareMode();
+    }, [itemType]);
 
-    }, [mode]);
+    useEffect(() => {
+        setBudgetList(initialBudgetElement);
+    }, [initialBudgetElement]);
 
     const getDisplayAmount = () => {
         let totalAmount = 0;
 
-        if (!budgetElement)
+        if (!initialBudgetElement)
             return `RM${totalAmount}`;
 
-        for (let item of budgetElement) {
+        for (let item of initialBudgetElement) {
             totalAmount += item?.amount;
         }
 
-        if (mode) {
-            if (mode === "income") {
+        if (itemType) {
+            if (itemType === INCOMES) {
                 return `RM${totalAmount}`
             }
         }
-        
+
         return `RM${totalAmount} / RM${allocation}`;
     };
 
+    const addItem = () => {
+        const budgetElementLength = budgetList.length;
+        let newBudgetList = [
+            ...budgetList,
+            { id: budgetElementLength, ...emptyItem }
+        ]
+        setBudgetElement(itemType, newBudgetList);
+    };
+
     return (
-        <div>
+        <Paper sx={{ mb: 2 }}>
             <Accordion defaultExpanded>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1-content"
-                    id="panel1-header"
-                >
-                    <Box
-                        display="flex"
-                        justifyContent="space-between"
-                        alignItems="center"
-                        sx={{ width: '100%' }}
-                    >
-                        <Typography variant="h5">{bmItem?.title}</Typography>
-                        <Typography variant="h5">{getDisplayAmount()}</Typography>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-end' }}>
+                        <Typography variant="h6" sx={{ mr: 0.5 }}>{bmItem?.title}</Typography>
+                        <Typography variant='subtitle2' color="textSecondary">{getDisplayAmount()}</Typography>
                     </Box>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <BudgetDataGrid mode={mode} budgetElement={budgetElement} />
+                    <BudgetDataGrid mode={itemType} budgetElement={budgetList} />
+                    <Box sx={{ mt: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                        <IconButton onClick={addItem}>
+                            <AddCircleIcon sx={{ mr: 1 }} />
+                            <Typography color="textSecondary">
+                                Add Item
+                            </Typography>
+                        </IconButton>
+                    </Box>
                 </AccordionDetails>
             </Accordion>
-        </div>
+        </Paper>
     );
 }
 

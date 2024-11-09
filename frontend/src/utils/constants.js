@@ -16,3 +16,7 @@ export const HOME = "Home";
 export const ADD = "New Budget";
 export const DETAILS = "Budget Details";
 export const BLANK = "";
+export const INCOMES = "incomes";
+export const NECESSITIES = "necessities";
+export const DESIRES = "desires";
+export const SAVINGS = "savings";

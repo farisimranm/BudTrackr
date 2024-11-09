@@ -2,42 +2,9 @@ import React, { useEffect, useState, useCallback } from "react";
 import Box from '@mui/material/Box';
 import { DataGrid, GridCellModes } from '@mui/x-data-grid';
 import { roundDecimal } from "../../utils/mathUtil";
+import { budgetDataGridSchema } from "../../resources/budgetItemSchema";
 
-const columns = [
-    {
-        field: 'name',
-        headerName: 'Name',
-        flex: 2,
-        editable: true,
-    },
-    {
-        field: 'amount',
-        headerName: 'Amount (RM)',
-        type: 'number',
-        flex: 1.5,
-        editable: true,
-    },
-    {
-        field: 'receiver',
-        headerName: 'Receiver',
-        flex: 1.5,
-        editable: true,
-    },
-    {
-        field: 'remarks',
-        headerName: 'Remarks',
-        flex: 3,
-        editable: true,
-    },
-    {
-        field: 'isCompleted',
-        headerName: 'Completed',
-        flex: 1,
-        type: 'boolean',
-        editable: true,
-    }
-];
-
+// TODO: handle cell edits
 function BudgetDataGrid({ mode, budgetElement }) {
     const [rows, setRows] = useState([]);
     const [cellModesModel, setCellModesModel] = useState({});
@@ -62,12 +29,12 @@ function BudgetDataGrid({ mode, budgetElement }) {
 
     const getColumns = () => {        
         if (!mode)
-            return columns;
+            return budgetDataGridSchema;
 
         if (mode === 'income')
-            return columns.filter(col => col.field !== 'receiver');
+            return budgetDataGridSchema.filter(col => col.field !== 'receiver');
 
-        return columns;
+        return budgetDataGridSchema;
     };
 
     const handleCellClick = useCallback((params, event) => {
@@ -130,6 +97,9 @@ function BudgetDataGrid({ mode, budgetElement }) {
                 cellModesModel={cellModesModel}
                 onCellModesModelChange={handleCellModesModelChange}
                 onCellClick={handleCellClick}
+                onCellEditStop={(params) => {
+                    console.log('params', params);
+                  }}
             />
         </Box>
     );

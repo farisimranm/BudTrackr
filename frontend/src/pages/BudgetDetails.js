@@ -6,10 +6,8 @@ import { getMonthName } from "../utils/dateUtil";
 import BudgetAccordion from "./components/BudgetAccordion";
 import { calculateAllocation } from "../utils/mathUtil";
 import BudgetBottomNav from "./components/BudgetBottomNav";
-import { WHITE } from "../utils/constants";
+import { WHITE, INCOMES, NECESSITIES, DESIRES, SAVINGS } from "../utils/constants";
 import RuleSection from "./components/RuleSection";
-import BudgetAccordion4 from "./components/BudgetAccordion4";
-import BudgetAccordion3 from "./components/BudgetAccordion3";
 
 function BudgetDetails() {
     const [budgetIdsObj, setBudgetIdsObj] = useState(null);
@@ -119,43 +117,55 @@ function BudgetDetails() {
         return totalAmount;
     };
 
+    const setBudgetElement = (itemType, budgetElement) => {
+        console.log('itemType', itemType);
+        console.log('budgetElement', budgetElement);
+        setBudget({
+            ...budget,
+            [itemType]: budgetElement
+        });
+    };
+
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
 
     return (
-        <Box>
+        <Box sx={{ py: 1 }}>
             <Box>
                 <Typography variant="h6" sx={{ pl: 1, color: WHITE }}>
                     Budget for {getMonthName(budget?.month) || NA} {budget?.year || NA}
                 </Typography>
             </Box>
             <RuleSection ruleData={ruleData} setRuleData={setRuleData} />
-            <BudgetAccordion4 title="Example" initialAmount={69} />
             <Paper className="budgetIncome" sx={{ backgroundColor: "lightsalmon" }}>
                 <BudgetAccordion
-                    mode="income"
-                    budgetElement={budget?.incomes}
+                    itemType={INCOMES}
+                    initialBudgetElement={budget?.incomes}
+                    setBudgetElement={setBudgetElement}
                 />
             </Paper>
             <Paper className="budgetNecessity" sx={{ backgroundColor: "lightsalmon" }}>
                 <BudgetAccordion
-                    mode="necessity"
+                    itemType={NECESSITIES}
                     allocation={ruleData?.necessities?.amount}
-                    budgetElement={budget?.necessities}
+                    initialBudgetElement={budget?.necessities}
+                    setBudgetElement={setBudgetElement}
                 />
             </Paper>
             <Paper className="budgetDesire" sx={{ backgroundColor: "lightsalmon" }}>
                 <BudgetAccordion
-                    mode="desire"
+                    itemType={DESIRES}
                     allocation={ruleData?.desires?.amount}
-                    budgetElement={budget?.desires}
+                    initialBudgetElement={budget?.desires}
+                    setBudgetElement={setBudgetElement}
                 />
             </Paper>
             <Paper className="budgetSaving" sx={{ backgroundColor: "lightsalmon", marginBottom: "100" }}>
                 <BudgetAccordion
-                    mode="saving"
+                    itemType={SAVINGS}
                     allocation={ruleData?.savings?.amount}
-                    budgetElement={budget?.savings}
+                    initialBudgetElement={budget?.savings}
+                    setBudgetElement={setBudgetElement}
                 />
             </Paper>
             <BudgetBottomNav
