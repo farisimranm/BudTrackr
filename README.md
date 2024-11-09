@@ -1,0 +1,3 @@
+- BudTrackr is a hobby project by Faris Imran
+- BudTrackr = Budget Tracker
+- Please don't say BudTrackr multiple times quickly
