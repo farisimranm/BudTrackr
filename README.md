@@ -1,6 +1,6 @@
 # BudTrackr
 
-- BudTrackr is a web app created as a hobby project by Faris Imran
+- BudTrackr is a hobby web application project by Faris Imran
 - BudTrackr = Budget Tracker
 - Please don't say BudTrackr multiple times quickly
 - Tech Stack:
