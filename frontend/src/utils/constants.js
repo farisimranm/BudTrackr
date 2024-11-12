@@ -12,7 +12,7 @@ export const WHITE = "#FFFFFF";
 export const BLACK = "#000000";
 
 // Constants
-export const HOME = "Home";
+export const BUDTRACKR = "BudTrackr";
 export const ADD = "New Budget";
 export const DETAILS = "Budget Details";
 export const BLANK = "";
@@ -20,3 +20,5 @@ export const INCOMES = "incomes";
 export const NECESSITIES = "necessities";
 export const DESIRES = "desires";
 export const SAVINGS = "savings";
+export const NA = "N/A";
+

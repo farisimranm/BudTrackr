@@ -15,23 +15,15 @@ import { INCOMES, NECESSITIES, DESIRES, SAVINGS } from "../../utils/constants";
 
 const budgetElementsMap = {
     income: {
-        single: "income",
-        plural: "incomes",
         title: "Incomes"
     },
     necessity: {
-        single: "necessity",
-        plural: "necessities",
         title: "Necessities"
     },
     desire: {
-        single: "desire",
-        plural: "desires",
         title: "Desires"
     },
     saving: {
-        single: "saving",
-        plural: "savings",
         title: "Savings"
     }
 }
@@ -40,7 +32,7 @@ function BudgetAccordion({ itemType, allocation, initialBudgetElement, setBudget
     const [bmItem, setBmItem] = useState(null);
     const [budgetList, setBudgetList] = useState(initialBudgetElement);
 
-    const emptyItem = { name: '', amount: 0, remarks: null, isCompleted: false };
+    const emptyItem = { name: 'Item name', amount: 0, remarks: 'Add remarks', isCompleted: false };
 
     useEffect(() => {
         const prepareMode = () => {

@@ -18,7 +18,7 @@ function Home() {
             </Box>
             <Paper sx={widgetSx}>
                 <Typography variant="h5" sx={textSx}>
-                    Wallet Balance
+                    Spending Balance
                 </Typography>
                 <Typography variant="h4" sx={textSx}>
                     RM 1000

@@ -1,4 +1,5 @@
-const NA = "N/A";
+import { NA } from "./constants";
+import dayjs from 'dayjs';
 
 export const months = [
     {
@@ -60,4 +61,13 @@ export const getFormattedDate = () => {
     const date = new Intl.DateTimeFormat('en-GB', { day: '2-digit' }).format(today);
     const month = new Intl.DateTimeFormat('en-GB', { month: 'long' }).format(today);
     return `${day}, ${date} ${month}`;
+};
+
+export const getDayjsDate = (month, year) => {
+    if (!Number.isNaN(month) && !Number.isNaN(year)) {
+        return dayjs(new Date(year, month - 1, 1));
+    }
+    else {
+        return dayjs();
+    }
 };

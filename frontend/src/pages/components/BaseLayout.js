@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { Box, Container } from '@mui/material';
-import { BLACK, HOME, ADD, DETAILS, root, home, new_budget, details } from '../../utils/constants';
+import { BLACK, BUDTRACKR, ADD, DETAILS, root, home, new_budget, details } from '../../utils/constants';
 import BottomNav from './BottomNav';
 import TopHeader from './TopHeader';
 
@@ -23,7 +23,7 @@ function BaseLayout() {
             case home:
             case root:
             default:
-                setPageTitle(HOME);
+                setPageTitle(BUDTRACKR);
                 break;
         }
     }, [location.pathname]);
@@ -38,7 +38,7 @@ function BaseLayout() {
             case DETAILS:
                 navigate(details);
                 break;
-            case HOME:
+            case BUDTRACKR:
             default:
                 navigate(root);
                 break;
@@ -57,7 +57,8 @@ function BaseLayout() {
             <TopHeader pageTitle={pageTitle} />
             <Container 
                 maxWidth="lg" 
-                sx={{ pb: 7, flexGrow: 1, overflowY: 'auto' }}>
+                sx={{ pb: 8, flexGrow: 1, overflowY: 'auto' }}
+            >
                 <Outlet />
             </Container>
             <BottomNav pageTitle={pageTitle} handleBottomNav={handleBottomNav} />

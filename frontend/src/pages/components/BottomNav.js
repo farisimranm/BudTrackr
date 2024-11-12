@@ -1,9 +1,9 @@
 import React from 'react';
 import { BottomNavigation, BottomNavigationAction, Paper } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import CalculateIcon from '@mui/icons-material/Calculate';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { GREY, WHITE, HOME, ADD, DETAILS } from '../../utils/constants';
+import { GREY, WHITE, BUDTRACKR, ADD, DETAILS } from '../../utils/constants';
 
 function BottomNav({ pageTitle, handleBottomNav }) {
     return (
@@ -14,16 +14,19 @@ function BottomNav({ pageTitle, handleBottomNav }) {
                 onChange={handleBottomNav}
             >
                 <BottomNavigationAction
-                    icon={<HomeIcon sx={{ color: WHITE }} />}
-                    value={HOME}
+                    icon={<HomeIcon />}
+                    value={BUDTRACKR}
+                    sx={{ color: pageTitle === BUDTRACKR ? 'primary.main' : WHITE }}
                 />
                 <BottomNavigationAction
-                    icon={<AddCircleIcon sx={{ color: WHITE }} />}
+                    icon={<AddCircleIcon />}
                     value={ADD}
+                    sx={{ color: pageTitle === ADD ? 'primary.main' : WHITE }}
                 />
                 <BottomNavigationAction
-                    icon={<AttachMoneyIcon sx={{ color: WHITE }} />}
+                    icon={<CalculateIcon />}
                     value={DETAILS}
+                    sx={{ color: pageTitle === DETAILS ? 'primary.main' : WHITE }}
                 />
             </BottomNavigation>
         </Paper>

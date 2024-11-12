@@ -1,18 +1,17 @@
-import React, { useState } from "react";
-import { Typography, Container, Box, TextField, MenuItem } from '@mui/material';
-import { months } from "../utils/dateUtil";
+import React from "react";
+import { Typography, Box } from '@mui/material';
 
 function NewBudget() {
-    const [month, setMonth] = useState(7);
+    // const [month, setMonth] = useState(7);
 
     return (
-        <Container>
+        <Box sx={{ py: 1 }}>
             <Box>
                 <Typography variant="h3" component="h3">
                     Add New Budget
                 </Typography>
             </Box>
-            <Box
+            {/* <Box
                 component="form"
                 sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' } }}
                 noValidate
@@ -31,8 +30,8 @@ function NewBudget() {
                         </MenuItem>
                     ))}
                 </TextField>
-            </Box>
-        </Container>
+            </Box> */}
+        </Box>
     );
 }
 
